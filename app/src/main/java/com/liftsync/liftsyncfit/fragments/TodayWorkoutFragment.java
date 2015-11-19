@@ -8,20 +8,19 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.liftsync.liftsyncfit.MainActivity;
 import com.liftsync.liftsyncfit.R;
 
 /**
- * A fragment with a Google +1 button.
+ * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
+ * {@link TodayWorkoutFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
+ * Use the {@link TodayWorkoutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class TodayWorkoutFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,15 +30,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
-    // The URL to +1.  Must be a valid URL.
-    private final String PLUS_ONE_URL = "http://developer.android.com";
-
-    // The request code must be 0 or greater.
-    private static final int PLUS_ONE_REQUEST_CODE = 0;
-
-    private Button mDemoButton;
-    private Button mWorkoutButton;
-
     private OnFragmentInteractionListener mListener;
 
     /**
@@ -48,11 +38,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
+     * @return A new instance of fragment TodayWorkoutFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
-        MainFragment fragment = new MainFragment();
+    public static TodayWorkoutFragment newInstance(String param1, String param2) {
+        TodayWorkoutFragment fragment = new TodayWorkoutFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,7 +50,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
-    public MainFragment() {
+    public TodayWorkoutFragment() {
         // Required empty public constructor
     }
 
@@ -77,22 +67,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-
-
-        mDemoButton = (Button) view.findViewById(R.id.main_demo_button);
-        mDemoButton.setOnClickListener(this);
-        mWorkoutButton = (Button) view.findViewById(R.id.main_workout_button);
-        mWorkoutButton.setOnClickListener(this);
-        return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // Refresh the state of the +1 button each time the activity receives focus.
-        //mButton.initialize(PLUS_ONE_URL, PLUS_ONE_REQUEST_CODE);
+        return inflater.inflate(R.layout.fragment_today_workout, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -124,16 +99,21 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         MainActivity mainActivity = (MainActivity) getActivity();
         FragmentManager fm = mainActivity.getSupportFragmentManager();
         switch (v.getId()) {
-            case R.id.main_demo_button:
-                WorkoutMainFragment fragmentDemoMain = WorkoutMainFragment.newInstance("main", "position2");
-                fm.beginTransaction().replace(R.id.fragment_container, fragmentDemoMain).addToBackStack(null).commit();
+            case R.id.workout_today_button:
+                //    TodayWorkoutFragment todayWorkoutFragment = TodayWorkoutFragment.newInstance("todayworkout","position1");
+                //    fm.beginTransaction().replace(R.id.fragment_container, todayWorkoutFragment)
+                //   .commit();
                 break;
-            case R.id.main_workout_button:
-                WorkoutMainFragment workoutMainFragment = WorkoutMainFragment.newInstance("main", "position2");
-                fm.beginTransaction().replace(R.id.fragment_container, workoutMainFragment).addToBackStack(null).commit();
+            case R.id.workout_clients_button:
+                //     FragmentWorkoutMain fragmentClients = FragmentClients.newInstance("workout","position2");
+                //     fm.beginTransaction().replace(R.id.fragment_container, fragmentWorkoutMain)
+                //     .commit();
+                break;
+            case R.id.create_workout_button:
+                //     FragmentWorkoutMain fragmentCreateWorkout = FragmentWorkoutMain.newInstance("workout","position2");
+                //     fm.beginTransaction().replace(R.id.fragment_container, fragmentCreateWorkout)
+                //             .commit();
                 break;
         }
     }
-
-
 }

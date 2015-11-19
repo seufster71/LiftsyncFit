@@ -4,16 +4,16 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_workout"
             android:icon="@android:drawable/ic_menu_camera"
-            android:title="Today's Workout" />
+            android:title="Workout" />
         <item android:id="@+id/nav_gallery"
             android:icon="@android:drawable/ic_menu_gallery"
             android:title="Create Workout" />
         <item android:id="@+id/nav_slideshow"
             android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Slideshow" />
-        <item android:id="@+id/nav_manage"
+        <item android:id="@+id/nav_profile"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Profile" />
     </group>
 
     <item android:title="Progress">
