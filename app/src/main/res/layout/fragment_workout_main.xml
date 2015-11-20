@@ -43,8 +43,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Workout"
-            android:id="@+id/create_workout_button"
+            android:text="Create/Edit Workout"
+            android:id="@+id/workout_list_button"
             android:layout_gravity="center_horizontal"
             android:height="70dp"
             android:background="#3fa9f5"

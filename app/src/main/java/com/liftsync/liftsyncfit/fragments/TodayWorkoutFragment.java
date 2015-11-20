@@ -15,7 +15,6 @@ import com.liftsync.liftsyncfit.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link TodayWorkoutFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link TodayWorkoutFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -109,7 +108,7 @@ public class TodayWorkoutFragment extends Fragment implements View.OnClickListen
                 //     fm.beginTransaction().replace(R.id.fragment_container, fragmentWorkoutMain)
                 //     .commit();
                 break;
-            case R.id.create_workout_button:
+            case R.id.workout_list_button:
                 //     FragmentWorkoutMain fragmentCreateWorkout = FragmentWorkoutMain.newInstance("workout","position2");
                 //     fm.beginTransaction().replace(R.id.fragment_container, fragmentCreateWorkout)
                 //             .commit();

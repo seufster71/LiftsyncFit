@@ -2,9 +2,7 @@ package com.liftsync.liftsyncfit.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +24,7 @@ import com.liftsync.liftsyncfit.fragments.dummy.DummyContent;
  * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
  * interface.
  */
-public class ClientFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class ClientWorkoutFragment extends Fragment implements AbsListView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,8 +49,8 @@ public class ClientFragment extends Fragment implements AbsListView.OnItemClickL
     private ListAdapter mAdapter;
 
     // TODO: Rename and change types of parameters
-    public static ClientFragment newInstance(String param1, String param2) {
-        ClientFragment fragment = new ClientFragment();
+    public static ClientWorkoutFragment newInstance(String param1, String param2) {
+        ClientWorkoutFragment fragment = new ClientWorkoutFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +62,7 @@ public class ClientFragment extends Fragment implements AbsListView.OnItemClickL
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ClientFragment() {
+    public ClientWorkoutFragment() {
     }
 
     @Override
@@ -82,11 +80,12 @@ public class ClientFragment extends Fragment implements AbsListView.OnItemClickL
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_client, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_clientworkout, container, false);
 
         // Set the adapter
-        mListView = (AbsListView) view.findViewById(R.id.client_list);
+        mListView = (AbsListView) view.findViewById(R.id.clientworkout_list);
         ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
 
         // Set OnItemClickListener so we can be notified on item clicks
@@ -119,9 +118,6 @@ public class ClientFragment extends Fragment implements AbsListView.OnItemClickL
             // fragment is attached to one) that an item has been selected.
             mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        ClientWorkoutFragment clientWorkoutFragment = ClientWorkoutFragment.newInstance("clientworkout", "position2");
-        fm.beginTransaction().replace(R.id.fragment_container, clientWorkoutFragment).addToBackStack(null).commit();
     }
 
     /**
@@ -136,6 +132,5 @@ public class ClientFragment extends Fragment implements AbsListView.OnItemClickL
             ((TextView) emptyView).setText(emptyText);
         }
     }
-
 
 }

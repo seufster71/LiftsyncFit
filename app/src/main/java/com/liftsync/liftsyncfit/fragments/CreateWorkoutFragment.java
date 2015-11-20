@@ -14,8 +14,6 @@ import com.liftsync.liftsyncfit.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CreateWorkoutFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link CreateWorkoutFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -38,7 +36,7 @@ public class CreateWorkoutFragment extends Fragment implements View.OnClickListe
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragementCreateWorkout.
+     * @return A new instance of fragment CreateFragment.
      */
     // TODO: Rename and change types and number of parameters
     public static CreateWorkoutFragment newInstance(String param1, String param2) {
@@ -99,17 +97,9 @@ public class CreateWorkoutFragment extends Fragment implements View.OnClickListe
         MainActivity mainActivity = (MainActivity) getActivity();
         FragmentManager fm = mainActivity.getSupportFragmentManager();
         switch (v.getId()) {
-            case R.id.workout_today_button:
+            case R.id.workout_list_add_button:
                 TodayWorkoutFragment todayWorkoutFragment = TodayWorkoutFragment.newInstance("todayworkout","position1");
-                fm.beginTransaction().replace(R.id.fragment_container, todayWorkoutFragment).commit();
-                break;
-            case R.id.workout_clients_button:
-                ClientFragment clientFragment = ClientFragment.newInstance("client","position2");
-                fm.beginTransaction().replace(R.id.fragment_container, clientFragment).commit();
-                break;
-            case R.id.create_workout_button:
-                CreateWorkoutFragment createWorkoutFragment = CreateWorkoutFragment.newInstance("createworkout","position2");
-                fm.beginTransaction().replace(R.id.fragment_container, createWorkoutFragment).commit();
+                fm.beginTransaction().replace(R.id.fragment_container, todayWorkoutFragment).addToBackStack(null).commit();
                 break;
         }
     }

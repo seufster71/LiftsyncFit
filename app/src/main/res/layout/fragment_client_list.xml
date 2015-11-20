@@ -4,10 +4,28 @@
     android:layout_height="match_parent"
     tools:context="com.liftsync.liftsyncfit.fragments.ClientFragment">
 
-    <ListView android:id="@android:id/list" android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView android:id="@android:id/empty" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:gravity="center" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:ems="10"
+            android:id="@+id/editText" />
+
+        <ListView android:id="@+id/client_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView android:id="@+id/client_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+
+    </LinearLayout>
 
 </FrameLayout>

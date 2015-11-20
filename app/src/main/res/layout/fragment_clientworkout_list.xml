@@ -2,14 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.liftsync.liftsyncfit.fragments.ClientFragment">
+    tools:context="com.liftsync.liftsyncfit.fragments.ClientWorkoutFragment">
 
-    <GridView android:id="@android:id/list"
+    <ListView android:id="@+id/clientworkout_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2" />
+        android:layout_height="match_parent" />
 
-    <TextView android:id="@android:id/empty"
+    <TextView android:id="@+id/clientworkout_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center" />
