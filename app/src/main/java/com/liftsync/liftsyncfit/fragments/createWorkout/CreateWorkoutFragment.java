@@ -1,4 +1,4 @@
-package com.liftsync.liftsyncfit.fragments;
+package com.liftsync.liftsyncfit.fragments.createWorkout;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -8,9 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.liftsync.liftsyncfit.MainActivity;
 import com.liftsync.liftsyncfit.R;
+import com.liftsync.liftsyncfit.dialogs.MuscleGroupDialogFragment;
+import com.liftsync.liftsyncfit.fragments.OnFragmentInteractionListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +29,8 @@ public class CreateWorkoutFragment extends Fragment implements View.OnClickListe
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button mChangeMuscleGroupButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,13 +63,19 @@ public class CreateWorkoutFragment extends Fragment implements View.OnClickListe
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_workout, container, false);
+        View view = inflater.inflate(R.layout.fragment_create_workout, container, false);
+        mChangeMuscleGroupButton = (Button) view.findViewById(R.id.muscle_group_edit_button);
+        mChangeMuscleGroupButton.setOnClickListener(this);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,12 +104,11 @@ public class CreateWorkoutFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        FragmentManager fm = mainActivity.getSupportFragmentManager();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         switch (v.getId()) {
-            case R.id.workout_list_add_button:
-                TodayWorkoutFragment todayWorkoutFragment = TodayWorkoutFragment.newInstance("todayworkout","position1");
-                fm.beginTransaction().replace(R.id.fragment_container, todayWorkoutFragment).addToBackStack(null).commit();
+            case R.id.muscle_group_edit_button:
+                MuscleGroupDialogFragment mgd = new MuscleGroupDialogFragment();
+                mgd.show(fm,"fragment_muscleGroup");
                 break;
         }
     }
