@@ -1,25 +1,25 @@
-package com.liftsync.liftsyncfit.fragments;
+package com.liftsync.liftsyncfit.fragments.exercise;
+
 
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.liftsync.liftsyncfit.MainActivity;
 import com.liftsync.liftsyncfit.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link MuscleGroupFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link WorkoutListFragment#newInstance} factory method to
+ * Use the {@link MuscleGroupFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WorkoutListFragment extends Fragment implements View.OnClickListener {
+public class MuscleGroupFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,9 +29,11 @@ public class WorkoutListFragment extends Fragment implements View.OnClickListene
     private String mParam1;
     private String mParam2;
 
-    private Button mWorkoutListAddButton;
-
     private OnFragmentInteractionListener mListener;
+
+    public MuscleGroupFragment() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -39,20 +41,16 @@ public class WorkoutListFragment extends Fragment implements View.OnClickListene
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragementCreateWorkout.
+     * @return A new instance of fragment MuscleGroupFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static WorkoutListFragment newInstance(String param1, String param2) {
-        WorkoutListFragment fragment = new WorkoutListFragment();
+    public static MuscleGroupFragment newInstance(String param1, String param2) {
+        MuscleGroupFragment fragment = new MuscleGroupFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public WorkoutListFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -68,10 +66,7 @@ public class WorkoutListFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_workout_list, container, false);
-        mWorkoutListAddButton = (Button) view.findViewById(R.id.workout_list_add_button);
-        mWorkoutListAddButton.setOnClickListener(this);
-        return view;
+        return inflater.inflate(R.layout.fragment_muscle_group, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -84,10 +79,10 @@ public class WorkoutListFragment extends Fragment implements View.OnClickListene
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
+        if (activity instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
+        } else {
+            throw new RuntimeException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
@@ -98,15 +93,18 @@ public class WorkoutListFragment extends Fragment implements View.OnClickListene
         mListener = null;
     }
 
-    @Override
-    public void onClick(View v) {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        switch (v.getId()) {
-            case R.id.workout_list_add_button:
-                CreateWorkoutFragment createWorkoutFragment = CreateWorkoutFragment.newInstance("createworkout","position1");
-                fm.beginTransaction().replace(R.id.fragment_container, createWorkoutFragment).addToBackStack(null).commit();
-                break;
-        }
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
-
 }

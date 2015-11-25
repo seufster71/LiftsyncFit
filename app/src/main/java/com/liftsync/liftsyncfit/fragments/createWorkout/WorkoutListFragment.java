@@ -1,9 +1,8 @@
-package com.liftsync.liftsyncfit.fragments;
+package com.liftsync.liftsyncfit.fragments.createWorkout;
 
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
@@ -12,16 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.liftsync.liftsyncfit.R;
-import com.liftsync.liftsyncfit.fragments.createWorkout.WorkoutListFragment;
-import com.liftsync.liftsyncfit.fragments.trainer.ClientFragment;
+import com.liftsync.liftsyncfit.fragments.OnFragmentInteractionListener;
 
 /**
  * A simple {@link Fragment} subclass.
  * to handle interaction events.
- * Use the {@link WorkoutMainFragment#newInstance} factory method to
+ * Use the {@link WorkoutListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class WorkoutMainFragment extends Fragment implements View.OnClickListener {
+public class WorkoutListFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,9 +29,7 @@ public class WorkoutMainFragment extends Fragment implements View.OnClickListene
     private String mParam1;
     private String mParam2;
 
-    private Button mWorkOutTodayButton;
-    private Button mWorkoutListButton;
-    private Button mClientButton;
+    private Button mWorkoutListAddButton;
 
     private OnFragmentInteractionListener mListener;
 
@@ -43,11 +39,11 @@ public class WorkoutMainFragment extends Fragment implements View.OnClickListene
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Fragment_workout_main.
+     * @return A new instance of fragment FragementCreateWorkout.
      */
     // TODO: Rename and change types and number of parameters
-    public static WorkoutMainFragment newInstance(String param1, String param2) {
-        WorkoutMainFragment fragment = new WorkoutMainFragment();
+    public static WorkoutListFragment newInstance(String param1, String param2) {
+        WorkoutListFragment fragment = new WorkoutListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -55,7 +51,7 @@ public class WorkoutMainFragment extends Fragment implements View.OnClickListene
         return fragment;
     }
 
-    public WorkoutMainFragment() {
+    public WorkoutListFragment() {
         // Required empty public constructor
     }
 
@@ -72,13 +68,9 @@ public class WorkoutMainFragment extends Fragment implements View.OnClickListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_workout_main, container, false);
-        mWorkOutTodayButton = (Button) view.findViewById(R.id.workout_today_button);
-        mWorkOutTodayButton.setOnClickListener(this);
-        mClientButton = (Button) view.findViewById(R.id.workout_clients_button);
-        mClientButton.setOnClickListener(this);
-        mWorkoutListButton = (Button) view.findViewById(R.id.workout_list_button);
-        mWorkoutListButton.setOnClickListener(this);
+        View view = inflater.inflate(R.layout.fragment_workout_list, container, false);
+        mWorkoutListAddButton = (Button) view.findViewById(R.id.workout_list_add_button);
+        mWorkoutListAddButton.setOnClickListener(this);
         return view;
     }
 
@@ -110,17 +102,9 @@ public class WorkoutMainFragment extends Fragment implements View.OnClickListene
     public void onClick(View v) {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         switch (v.getId()) {
-            case R.id.workout_today_button:
-                TodayWorkoutFragment todayWorkoutFragment = TodayWorkoutFragment.newInstance("todayworkout","position1");
-                fm.beginTransaction().replace(R.id.fragment_container, todayWorkoutFragment).addToBackStack(null).commit();
-                break;
-            case R.id.workout_clients_button:
-                ClientFragment clientFragment = ClientFragment.newInstance("client","position2");
-                fm.beginTransaction().replace(R.id.fragment_container, clientFragment).addToBackStack(null).commit();
-                break;
-            case R.id.workout_list_button:
-               WorkoutListFragment workoutListFragment = WorkoutListFragment.newInstance("workoutlist", "position2");
-                fm.beginTransaction().replace(R.id.fragment_container, workoutListFragment).addToBackStack(null).commit();
+            case R.id.workout_list_add_button:
+                CreateWorkoutFragment createWorkoutFragment = CreateWorkoutFragment.newInstance("createworkout","position1");
+                fm.beginTransaction().replace(R.id.fragment_container, createWorkoutFragment).addToBackStack(null).commit();
                 break;
         }
     }
